@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return response.json();
     })
     .then(data => {
-      empleados = data.Company.Employees;
-      mostrarEmpleados(empleados);       
+      empleados = data.Company.Employees; 
+      mostrarEmpleados(empleados);      
     })
     .catch(error => {
       console.error("Error:", error);
@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lista.forEach(empleado => {
       const objDiv = document.createElement("div");
       objDiv.classList.add("objeto"); 
+
       objDiv.innerHTML = `
         <div class="card h-100 shadow-sm">
           <div class="card-body">
@@ -35,26 +36,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
       container.appendChild(objDiv);
     });
-    })
-    .catch(error => {
-    console.error("Error:", error);
-    container.innerHTML = "<p>No se pudo cargar la lista de empleados.</p>";
+  }
+
+
+  const sortSelect = document.getElementById("sortSelect");
+  sortSelect.addEventListener("change", () => {
+    const campo = sortSelect.value; 
+    const ordenados = [...empleados].sort((a, b) => {
+      return campo === "apellido"
+        ? a.LastName.localeCompare(b.LastName)
+        : a.Address.City.localeCompare(b.Address.City);
     });
-});
-
-
-<<<<<<< HEAD
-=======
-document.getElementById("searchInput").addEventListener("input", function() {
-  const texto = this.value.toLowerCase();
-  const filtrados = empleados.filter(empleado => {
-    return empleado.FirstName.toLowerCase().includes(texto) || empleado.LastName.toLowerCase().includes(texto);
+    mostrarEmpleados(ordenados);
   });
-  mostrarEmpleados(filtrados);
 });
 
->>>>>>> f82afe65d29d586ba5952d26ef150679a8c2d857
-// Datos simulados 
+
+
 const empleados = [
   {
     FirstName: "Tanmay",
