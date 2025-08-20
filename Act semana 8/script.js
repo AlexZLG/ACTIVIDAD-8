@@ -3,26 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
   let empleados = []; 
 
   fetch("empleados.json")
-    .then(response => {
-      if (!response.ok) throw new Error("Error al cargar el JSON");
-      return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
       empleados = data.Company.Employees; 
-      mostrarEmpleados(empleados);      
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      container.innerHTML = "<p>No se pudo cargar la lista de empleados.</p>";
+      mostrarEmpleados(empleados);
     });
 
- 
   function mostrarEmpleados(lista) {
     container.innerHTML = "";
     lista.forEach(empleado => {
       const objDiv = document.createElement("div");
       objDiv.classList.add("objeto"); 
-
       objDiv.innerHTML = `
         <div class="card h-100 shadow-sm">
           <div class="card-body">
@@ -33,51 +24,30 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
       `;
-
       container.appendChild(objDiv);
     });
   }
 
-
-  const sortSelect = document.getElementById("sortSelect");
-  sortSelect.addEventListener("change", () => {
-    const campo = sortSelect.value; 
-    const ordenados = [...empleados].sort((a, b) => {
-      return campo === "apellido"
+  document.getElementById("sortSelect").addEventListener("change", () => {
+    const campo = document.getElementById("sortSelect").value;
+    const ordenados = [...empleados].sort((a, b) =>
+      campo === "apellido"
         ? a.LastName.localeCompare(b.LastName)
-        : a.Address.City.localeCompare(b.Address.City);
-    });
+        : a.Address.City.localeCompare(b.Address.City)
+    );
     mostrarEmpleados(ordenados);
+  });
+
+  document.getElementById("searchInput").addEventListener("input", function(e) {
+    const texto = e.target.value.toLowerCase();
+    const filtrados = empleados.filter(emp =>
+      emp.FirstName.toLowerCase().includes(texto) ||
+      emp.LastName.toLowerCase().includes(texto) ||
+      emp.Address.City.toLowerCase().includes(texto)
+    );
+    mostrarEmpleados(filtrados);
   });
 });
 
 
-
-const empleados = [
-  {
-    FirstName: "Tanmay",
-    LastName: "Patil",
-    Address: { City: "Bangalore" }
-  },
-  {
-    FirstName: "Ramona",
-    LastName: "Perez",
-    Address: { City: "Montevideo" }
-  },
-  {
-    FirstName: "Sofia",
-    LastName: "Wetther",
-    Address: { City: "Canelones" }
-  },
-  {
-    FirstName: "Olivia",
-    LastName: "Rodrigo",
-    Address: { City: "San José" }
-  },
-  {
-    FirstName: "Taylor",
-    LastName: "Swift",
-    Address: { City: "Pando" }
-  }
-];
 
