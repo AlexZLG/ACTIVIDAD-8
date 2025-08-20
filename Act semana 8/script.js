@@ -35,21 +35,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       container.appendChild(objDiv);
     });
-  }
-
-  const sortSelect = document.getElementById("sortSelect");
-  sortSelect.addEventListener("change", () => {
-    const campo = sortSelect.value; 
-    const ordenados = [...empleados].sort((a, b) => {
-      return campo === "apellido"
-        ? a.LastName.localeCompare(b.LastName)
-        : a.Address.City.localeCompare(b.Address.City);
+    })
+    .catch(error => {
+    console.error("Error:", error);
+    container.innerHTML = "<p>No se pudo cargar la lista de empleados.</p>";
     });
-    mostrarEmpleados(ordenados);
-  });
 });
 
 
+<<<<<<< HEAD
+=======
+document.getElementById("searchInput").addEventListener("input", function() {
+  const texto = this.value.toLowerCase();
+  const filtrados = empleados.filter(empleado => {
+    return empleado.FirstName.toLowerCase().includes(texto) || empleado.LastName.toLowerCase().includes(texto);
+  });
+  mostrarEmpleados(filtrados);
+});
+
+>>>>>>> f82afe65d29d586ba5952d26ef150679a8c2d857
 // Datos simulados 
 const empleados = [
   {
