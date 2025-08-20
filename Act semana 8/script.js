@@ -36,6 +36,15 @@ fetch("empleados.json")
     });
 });
 
+
+document.getElementById("searchInput").addEventListener("input", function() {
+  const texto = this.value.toLowerCase();
+  const filtrados = empleados.filter(empleado => {
+    return empleado.FirstName.toLowerCase().includes(texto) || empleado.LastName.toLowerCase().includes(texto);
+  });
+  mostrarEmpleados(filtrados);
+});
+
 // Datos simulados 
 const empleados = [
   {
