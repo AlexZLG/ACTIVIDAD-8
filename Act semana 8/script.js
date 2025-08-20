@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-const container = document.querySelector(".Main-1");
+const container = document.querySelector("#employeeCards");
+
 
 
 fetch("empleados.json")
@@ -11,9 +12,11 @@ fetch("empleados.json")
     container.innerHTML = "";
 
 
+
     data.Company.Employees.forEach(empleado => {
         const objDiv = document.createElement("div");
         objDiv.classList.add("objeto");
+
 
 
         objDiv.innerHTML = `
@@ -27,14 +30,16 @@ fetch("empleados.json")
         `;
 
 
+
         container.appendChild(objDiv);
     });
     })
     .catch(error => {
     console.error("Error:", error);
-    container.innerHTML = "<p>No se pudo cargar la lista de productos.</p>";
+    container.innerHTML = "<p>No se pudo cargar la lista de empleados.</p>";
     });
 });
+
 
 // Datos simulados 
 const empleados = [
