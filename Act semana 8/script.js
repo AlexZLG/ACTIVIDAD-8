@@ -41,6 +41,17 @@ fetch("empleados.json")
 });
 
 
+<<<<<<< HEAD
+=======
+document.getElementById("searchInput").addEventListener("input", function() {
+  const texto = this.value.toLowerCase();
+  const filtrados = empleados.filter(empleado => {
+    return empleado.FirstName.toLowerCase().includes(texto) || empleado.LastName.toLowerCase().includes(texto);
+  });
+  mostrarEmpleados(filtrados);
+});
+
+>>>>>>> f82afe65d29d586ba5952d26ef150679a8c2d857
 // Datos simulados 
 const empleados = [
   {
