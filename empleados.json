@@ -1,0 +1,61 @@
+{
+  "Company": {
+    "Employees": [
+      {
+        "FirstName": "Tanmay",
+        "LastName": "Patil",
+        "ContactNo": "1234567890",
+        "Email": "tanmaypatil@xyz.com",
+        "Address": {
+          "City": "Bangalore",
+          "State": "Karnataka",
+          "Zip": "560212"
+        }
+      },
+      {
+        "FirstName": "Ramona",
+        "LastName": "Perez",
+        "ContactNo": "1234567890",
+        "Email": "ramonaperez@xyz.com",
+        "Address": {
+          "City": "Montevideo",
+          "State": "Montevideo",
+          "Zip": "560212"
+        }
+      },
+      {
+        "FirstName": "Sofia",
+        "LastName": "Wetther",
+        "ContactNo": "1234567890",
+        "Email": "sofiawetther@xyz.com",
+        "Address": {
+          "City": "Canelones",
+          "State": "Canelones",
+          "Zip": "560212"
+        }
+      },
+      {
+        "FirstName": "Olivia",
+        "LastName": "Rodrigo",
+        "ContactNo": "1234567890",
+        "Email": "oliviarodrigo@xyz.com",
+        "Address": {
+          "City": "San José",
+          "State": "San José",
+          "Zip": "560212"
+        }
+      },
+      {
+        "FirstName": "Taylor",
+        "LastName": "Swift",
+        "ContactNo": "1234567890",
+        "Email": "taylorswift@xyz.com",
+        "Address": {
+          "City": "Pando",
+          "State": "Canelones",
+          "Zip": "560212"
+        }
+      }
+    ]
+  }
+}

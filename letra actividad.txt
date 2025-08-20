@@ -1,0 +1,9 @@
+Actividad para Realizar en Clase
+
+Objetivo: Crear una página web que muestre el nombre, apellido y ciudad de cada empleado.
+
+El reto será mostrar la información de cada empleado en una página HTML, dentro de tarjetas estilizadas.
+
+Desafíos adicionales:
+-Ordenar a los empleados por ciudad o apellido.
+-Agregar un formulario para buscar empleados por nombre o ciudad.
