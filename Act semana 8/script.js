@@ -41,8 +41,6 @@ fetch("empleados.json")
 });
 
 
-<<<<<<< HEAD
-=======
 document.getElementById("searchInput").addEventListener("input", function() {
   const texto = this.value.toLowerCase();
   const filtrados = empleados.filter(empleado => {
@@ -50,34 +48,3 @@ document.getElementById("searchInput").addEventListener("input", function() {
   });
   mostrarEmpleados(filtrados);
 });
-
->>>>>>> f82afe65d29d586ba5952d26ef150679a8c2d857
-// Datos simulados 
-const empleados = [
-  {
-    FirstName: "Tanmay",
-    LastName: "Patil",
-    Address: { City: "Bangalore" }
-  },
-  {
-    FirstName: "Ramona",
-    LastName: "Perez",
-    Address: { City: "Montevideo" }
-  },
-  {
-    FirstName: "Sofia",
-    LastName: "Wetther",
-    Address: { City: "Canelones" }
-  },
-  {
-    FirstName: "Olivia",
-    LastName: "Rodrigo",
-    Address: { City: "San José" }
-  },
-  {
-    FirstName: "Taylor",
-    LastName: "Swift",
-    Address: { City: "Pando" }
-  }
-];
-
