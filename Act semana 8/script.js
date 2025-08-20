@@ -1,57 +1,55 @@
 document.addEventListener("DOMContentLoaded", () => {
-const container = document.querySelector("#employeeCards");
+  const container = document.querySelector("#employeeCards");
+  let empleados = []; 
 
-
-
-fetch("empleados.json")
+  fetch("empleados.json")
     .then(response => {
-    if (!response.ok) throw new Error("Error al cargar el JSON");
-    return response.json();
+      if (!response.ok) throw new Error("Error al cargar el JSON");
+      return response.json();
     })
     .then(data => {
-    container.innerHTML = "";
-
-
-
-    data.Company.Employees.forEach(empleado => {
-        const objDiv = document.createElement("div");
-        objDiv.classList.add("objeto");
-
-
-
-        objDiv.innerHTML = `
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Nombre: ${empleado.FirstName}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Apellido: ${empleado.LastName}</h6>
-                <p class="card-text">Ciudad: ${empleado.Address.City}</p>
-            </div>
-        </div>
-        `;
-
-
-
-        container.appendChild(objDiv);
-    });
+      empleados = data.Company.Employees;
+      mostrarEmpleados(empleados);       
     })
     .catch(error => {
-    console.error("Error:", error);
-    container.innerHTML = "<p>No se pudo cargar la lista de empleados.</p>";
+      console.error("Error:", error);
+      container.innerHTML = "<p>No se pudo cargar la lista de empleados.</p>";
     });
-});
 
+ 
+  function mostrarEmpleados(lista) {
+    container.innerHTML = "";
+    lista.forEach(empleado => {
+      const objDiv = document.createElement("div");
+      objDiv.classList.add("objeto"); 
+      objDiv.innerHTML = `
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">${empleado.FirstName} ${empleado.LastName}</h5>
+            <p class="card-text"><strong>Ciudad:</strong> ${empleado.Address.City}</p>
+            <p class="card-text"><strong>Email:</strong> ${empleado.Email}</p>
+            <p class="card-text"><strong>Teléfono:</strong> ${empleado.ContactNo}</p>
+          </div>
+        </div>
+      `;
 
-<<<<<<< HEAD
-=======
-document.getElementById("searchInput").addEventListener("input", function() {
-  const texto = this.value.toLowerCase();
-  const filtrados = empleados.filter(empleado => {
-    return empleado.FirstName.toLowerCase().includes(texto) || empleado.LastName.toLowerCase().includes(texto);
+      container.appendChild(objDiv);
+    });
+  }
+
+  const sortSelect = document.getElementById("sortSelect");
+  sortSelect.addEventListener("change", () => {
+    const campo = sortSelect.value; 
+    const ordenados = [...empleados].sort((a, b) => {
+      return campo === "apellido"
+        ? a.LastName.localeCompare(b.LastName)
+        : a.Address.City.localeCompare(b.Address.City);
+    });
+    mostrarEmpleados(ordenados);
   });
-  mostrarEmpleados(filtrados);
 });
 
->>>>>>> f82afe65d29d586ba5952d26ef150679a8c2d857
+
 // Datos simulados 
 const empleados = [
   {
